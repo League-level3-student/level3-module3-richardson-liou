@@ -34,13 +34,22 @@ public class _01_StringMethods {
 
     // Given Strings s1 and s2, return the longer String
     public static String longerString(String s1, String s2) {
-        return null;
+        if (s1.length()> s2.length()) {
+        	return s1;
+        }
+        else {
+        	return s2;
+        }
     }
 
     // If String s contains the word "underscores", change all of the spaces
     // to underscores
     public static String formatSpaces(String s) {
-        return null;
+    	if(s.contains("underscores")) {
+    		s = s.replace(' ', '_');
+    	}
+    	System.out.println(s);
+        return s;
     }
 
     // Return the name of the person whose LAST name would appear first if they
@@ -48,34 +57,85 @@ public class _01_StringMethods {
     // You cannot assume there are no extra spaces around the name, but you can
     // assume there is only one space between the first and last name
     public static String lineLeader(String s1, String s2, String s3) {
-        return null;
+        s1 = s1.trim();
+        s2= s2.trim();
+        s3 = s3.trim();
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println(s3);
+        String[] name1 = s1.split(" "); // split on space character
+        String[] name2= s2.split(" "); 
+        String[] name3 = s3.split(" "); 
+
+        
+        if (name1[1].compareTo(name2[1])<0&& name1[1].compareTo(name3[1])<0) {
+        	
+        	return s1;
+        }
+        if(name2[1].compareTo(name1[1])<0&& name2[1].compareTo(name3[1])<0) {
+        	
+        	return s2;
+        }
+
+        else {
+        	return s3;
+        }
     }
 
     // Return the sum of all numerical digits in the String
     public static int numeralSum(String s) {
-        return 0;
+    	int sum = 0;
+    	for (int i = 0; i< s.length(); i++) {
+    		if (Character.isDigit(s.charAt(i))) {
+    			
+    			int num = Integer.parseInt(s.charAt(i)+"");
+    			sum += num;
+    		}
+    	}
+        return sum;
     }
 
     // Return the number of times String substring appears in String s
     public static int substringCount(String s, String substring) {
-        return 0;
+    	 int numOccurances = 0;
+         int index = s.indexOf(substring);
+         while( index != -1 ) {
+             numOccurances++;
+             index = s.indexOf(substring, index + substring.length());
+         }
+    	
+        return numOccurances;
     }
 
     // Call Utilities.encrypt at the bottom of this file to encrypt String s
     public static String encrypt(String s, char key) {
+    	String decrypted = Utilities.encrypt((byte[])s, (byte) key);
         return null;
     }
 
     // Call Utilities.decrypt at the bottom of this file to decrypt the
     // cyphertext (encrypted text)
     public static String decrypt(String s, char key) {
-        return null;
+    	String decrypted = Utilities.decrypt(s, (byte) key);
+    	return decrypted;
     }
 
     // Return the number of words in String s that end with String substring
     // You can assume there are no punctuation marks between words
     public static int wordsEndsWithSubstring(String s, String substring) {
-        return 0;
+    	String[] words = s.split(" ");
+    	int numOccurances = 0;
+        
+        for (int i = 0; i< s.length(); i++) {
+        	int index = words[i].indexOf(substring);
+        if(index != -1) {
+            numOccurances++;
+            index = words[i].indexOf(substring, index + substring.length());
+        }
+        
+        }
+        
+        return numOccurances;
     }
 
     // Given String s, return the number of characters between the first
