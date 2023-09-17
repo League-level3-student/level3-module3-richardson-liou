@@ -109,7 +109,7 @@ public class _01_StringMethods {
 
     // Call Utilities.encrypt at the bottom of this file to encrypt String s
     public static String encrypt(String s, char key) {
-    	String decrypted = Utilities.encrypt((byte[])s, (byte) key);
+    	String encrypted = Utilities.encrypt(s.getBytes(), (byte) key);
         return null;
     }
 
@@ -124,32 +124,44 @@ public class _01_StringMethods {
     // You can assume there are no punctuation marks between words
     public static int wordsEndsWithSubstring(String s, String substring) {
     	String[] words = s.split(" ");
-    	int numOccurances = 0;
+    	int count = 0;
+      
+        for (String word : words) {
+            
+            if (word.endsWith(substring)) {
+                count++;
+            }
+        }
+
+        return count;
         
-        for (int i = 0; i< s.length(); i++) {
-        	int index = words[i].indexOf(substring);
-        if(index != -1) {
-            numOccurances++;
-            index = words[i].indexOf(substring, index + substring.length());
         }
         
-        }
         
-        return numOccurances;
-    }
+    
 
     // Given String s, return the number of characters between the first
     // occurrence of String substring and the final occurrence
     // You can assume that substring will appear at least twice
     public static int distance(String s, String substring) {
-        return 0;
+    	int firstIndex = s.indexOf(substring);
+        int lastIndex = s.lastIndexOf(substring);
+        if (firstIndex != -1 && lastIndex != -1) {
+            int charCountBetween = lastIndex - firstIndex - substring.length();
+            return charCountBetween;
+        }
+        
+        // Handle the case where one or both occurrences were not found
+        return -1; // You can choose to return a specific value or throw an exception here
     }
+    
 
     // Return true if String s is a palindrome
     // palindromes are words or phrases are read the same forward as backward.
     // HINT: ignore/remove all punctuation and spaces in the String
     public static boolean palindrome(String s) {
-        return true;
+    	return true;
+        
     }
 }
 
