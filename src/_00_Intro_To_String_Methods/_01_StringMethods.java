@@ -110,7 +110,7 @@ public class _01_StringMethods {
     // Call Utilities.encrypt at the bottom of this file to encrypt String s
     public static String encrypt(String s, char key) {
     	String encrypted = Utilities.encrypt(s.getBytes(), (byte) key);
-        return null;
+        return encrypted;
     }
 
     // Call Utilities.decrypt at the bottom of this file to decrypt the
@@ -160,7 +160,30 @@ public class _01_StringMethods {
     // palindromes are words or phrases are read the same forward as backward.
     // HINT: ignore/remove all punctuation and spaces in the String
     public static boolean palindrome(String s) {
-    	return true;
+    	s=s.toLowerCase();
+    	s=s.trim();
+    	s=s.replace(" ", "");
+    	s=s.replace(",", "");
+    	s=s.replace("?", "");
+    	s=s.replace(".", "");
+    	s=s.replace("!", "");
+    	s=s.replace("-", "");
+    	s=s.replace(":", "");
+    	s.toCharArray();
+    	
+    	String reversed = "";
+    	for(int i = s.length()-1; i>=0; i--) {
+    		System.out.println(i);
+    		char curr = s.charAt(i);
+    		System.out.println(curr);
+    		reversed +=curr;
+    	}
+    	System.out.println(reversed);
+    	System.out.println(s);
+    	if(reversed.equals(s)) {
+    		return true;
+    	}
+    	return false;
         
     }
 }
